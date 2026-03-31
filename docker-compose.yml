@@ -1,0 +1,35 @@
+services:
+  db:
+    container_name: vantage-db
+    restart: always
+    image: vantage-db
+    build:
+      context: ./services/vantage-db
+    volumes:
+      - db:/var/lib/postgresql/data
+    env_file:
+      - ./.env
+    networks:
+      - network
+    ports:
+      - "5432:5432"
+  api:
+    container_name: vantage-api
+    restart: always
+    image: vantage-api
+    build:
+      context: ./services/vantage-api
+    env_file:
+      - ./.env
+    networks:
+      - network
+    ports:
+      - "5678:5678"
+    depends_on:
+      - db
+
+networks:
+  network:
+
+volumes:
+  db:
