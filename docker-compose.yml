@@ -24,7 +24,7 @@ services:
     networks:
       - network
     ports:
-      - "5678:5678"
+      - "5000:5000"
     depends_on:
       - db
 
