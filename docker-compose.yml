@@ -19,6 +19,8 @@ services:
     image: vantage-api
     build:
       context: ./services/vantage-api
+    command:
+      - --cors
     env_file:
       - ./.env
     networks:
