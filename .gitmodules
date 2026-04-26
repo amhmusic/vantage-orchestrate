@@ -1,6 +1,0 @@
-[submodule "services/vantage-db"]
-	path = services/vantage-db
-	url = https://github.com/amhmusic/vantage-db.git
-[submodule "services/vantage-api"]
-	path = services/vantage-api
-	url = https://github.com/amhmusic/vantage-api.git
