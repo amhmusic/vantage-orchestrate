@@ -10,6 +10,8 @@ docker run -d \
   -p 5432:5432 \
   vantage-db
 
+sleep 5;
+
 # Run Hasura
 docker run -d \
   --name vantage-api \
