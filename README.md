@@ -1,4 +1,4 @@
-# vantage-orchestrate is the parent orchestration repo that manages git submodules for vantage
+# vantage-orchestrate is the parent orchestration repo that manages the vantage software stack
 
 ## Local run
-./run_vantage.sh
+docker compose up

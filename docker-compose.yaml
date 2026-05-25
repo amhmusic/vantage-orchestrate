@@ -1,0 +1,29 @@
+services:
+  vantage-db:
+    image: flokimon/vantage:vantage-db-0.1.0
+    restart: unless-stopped
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=vantage-db
+      - POSTGRES_PORT=5432
+  vantage-ui:
+    image: flokimon/vantage:vantage-ui-0.1.0
+    restart: unless-stopped
+    ports:
+      - "8080:80"
+    depends_on:
+      - vantage-api
+      - vantage-db
+  vantage-api:
+    image: flokimon/vantage:vantage-api-0.1.0
+    restart: unless-stopped
+    ports:
+      - "5000:8080"
+    environment:
+      - HASURA_GRAPHQL_DATABASE_URL=postgres://postgres:postgres@vantage-db:5432/vantage-db
+      - HASURA_GRAPHQL_ENABLE_CONSOLE=true
+    depends_on:
+      - vantage-db
