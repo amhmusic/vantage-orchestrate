@@ -20,7 +20,7 @@ services:
     networks:
       - vantage-network
   vantage-ui:
-    image: flokimon/vantage:vantage-ui-0.1.0
+    image: flokimon/vantage:vantage-ui-0.1.1
     restart: unless-stopped
     ports:
       - "8080:80"
