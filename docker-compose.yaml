@@ -1,4 +1,12 @@
 services:
+  vantage-collect:
+    image: flokimon/vantage:vantage-collect-0.1.0
+    restart: unless-stopped
+    depends_on:
+      - vantage-db
+      - vantage-api
+    networks:
+      - vantage-network
   vantage-db:
     image: flokimon/vantage:vantage-db-0.1.0
     restart: unless-stopped
@@ -9,6 +17,8 @@ services:
       - POSTGRES_PASSWORD=postgres
       - POSTGRES_DB=vantage-db
       - POSTGRES_PORT=5432
+    networks:
+      - vantage-network
   vantage-ui:
     image: flokimon/vantage:vantage-ui-0.1.0
     restart: unless-stopped
@@ -17,6 +27,8 @@ services:
     depends_on:
       - vantage-api
       - vantage-db
+    networks:
+      - vantage-network
   vantage-api:
     image: flokimon/vantage:vantage-api-0.1.0
     restart: unless-stopped
@@ -27,3 +39,7 @@ services:
       - HASURA_GRAPHQL_ENABLE_CONSOLE=true
     depends_on:
       - vantage-db
+    networks:
+      - vantage-network
+networks:
+  vantage-network:
